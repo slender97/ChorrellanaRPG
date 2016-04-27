@@ -30,6 +30,18 @@ Player.prototype.render = function(){
 
 	//this.colliderSprite.immovable = true; // makes it immovable when a collision occurs
 	this.colliderSprite.body.collideWorldBounds = true; // colliderSprite cannot exceed the world bounds
+
+	//Se crea la imagen de los obstaculos y se trata de hacer que el personaje choque contra ellos
+	spriteObstacles = this.game.add.sprite(0, 0, 'obstacles');
+	spriteObstacles.name = 'obstacles';
+	game.physics.enable(spriteObstacles, Phaser.Physics.ARCADE);
+	spriteObstacles.body.collideWorldBounds = false;
+	spriteObstacles.body.checkCollision.up = true;
+	spriteObstacles.body.checkCollision.down = true;
+	spriteObstacles.body.inmovable = true;
+
+
+
 };
 
 // Defines the player's animations with their respective frames.
@@ -133,4 +145,5 @@ Player.prototype.handleMovement = function(){
 // Updates the player.
 Player.prototype.update = function(){
 	this.handleMovement();
+	game.physics.arcade.collide(spriteObstacles, this.colliderSprite);
 }
