@@ -10,6 +10,8 @@ States.Play = {
 		// Sets the game background with file associated to 'map' on boot.js.
 		this.game.background = this.game.add.sprite(0, 0, 'map');
 
+		this.game.background = this.game.add.sprite(0, 0, 'obstacle');
+
 		// Sets the world bounds.
 		this.game.world.setBounds(0, 0, 1536, 1536);
 
@@ -20,6 +22,11 @@ States.Play = {
     	game.player = new Player(window.game);
 		game.player.load();
 
+		game.obstacle = new Obstacle(window.game);
+		game.obstacle.load();
+
+		
+
 		// Sets the camera to follow the player.
 		this.game.camera.follow(this.game.player.colliderSprite);
 	},
@@ -27,5 +34,6 @@ States.Play = {
 	update: function(){
 		// Updates the player.
 		game.player.update();
+		
 	}
 };
